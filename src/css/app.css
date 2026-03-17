@@ -1,0 +1,123 @@
+@import 'normalize.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 220 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+    --primary: 0 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 100% 33%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 43 90% 50%;
+    --accent-foreground: 220 20% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 216 100% 33%;
+    --radius: 0.75rem;
+    --tricolor-white: 220 14% 92%;
+    --tricolor-blue: 216 100% 33%;
+    --tricolor-red: 0 100% 40%;
+    --gold: 43 90% 50%;
+  }
+
+  .dark {
+    --background: 220 20% 7%;
+    --foreground: 0 0% 95%;
+    --card: 220 20% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 20% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 80% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 43 90% 50%;
+    --accent-foreground: 220 20% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 216 80% 50%;
+    --tricolor-white: 220 15% 75%;
+    --tricolor-blue: 216 80% 50%;
+    --tricolor-red: 0 100% 45%;
+    --gold: 43 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+}
+
+.glassmorphism {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: var(--radius);
+}
+
+.tricolor-stripe {
+  background: linear-gradient(
+    to right,
+    hsl(var(--tricolor-white)) 0%,
+    hsl(var(--tricolor-white)) 33.33%,
+    hsl(var(--tricolor-blue)) 33.33%,
+    hsl(var(--tricolor-blue)) 66.66%,
+    hsl(var(--tricolor-red)) 66.66%,
+    hsl(var(--tricolor-red)) 100%
+  );
+  box-shadow: 0 1px 3px hsl(0 0% 0% / 0.15);
+}
+
+.tricolor-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--tricolor-white)) 0%,
+    hsl(var(--tricolor-blue) / 0.15) 40%,
+    hsl(var(--tricolor-red) / 0.1) 100%
+  );
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  appearance: textfield;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
