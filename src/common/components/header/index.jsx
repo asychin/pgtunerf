@@ -33,7 +33,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 glassmorphism">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <Link to="/" className="flex items-center gap-1.5 no-underline">
-          <img src={logoImg} alt="пгтюн.рф" className="h-14 w-14 rounded" />
+          <img src={logoImg} alt="пгтюн.рф" className="h-20 w-20 rounded" />
           <span className="text-2xl font-black tracking-tight text-foreground">{t.title}</span>
         </Link>
 
