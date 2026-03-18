@@ -10,17 +10,7 @@
 
 ---
 
-## Документация / Языки
-
-Выбери свой вариант:
-
-| Язык | Описание | Ссылка |
-|---|---|---|
-| Русский | Стандартный русский | [docs/README.ru.md](docs/README.ru.md) |
-| Русский Enterprise | Корпоративный, для совещаний | [docs/README.enterprise.md](docs/README.enterprise.md) |
-| Русский гопник | Чётко, без базара | [docs/README.gopnik.md](docs/README.gopnik.md) |
-| Русский пьяный | После трёх тостов... ик | [docs/README.drunk.md](docs/README.drunk.md) |
-| Русская бабушка | Внучок, покушай | [docs/README.babushka.md](docs/README.babushka.md) |
+[Русский](docs/README.ru.md) · [Enterprise](docs/README.enterprise.md) · [Гопник](docs/README.gopnik.md) · [Пьяный](docs/README.drunk.md) · [Бабушка](docs/README.babushka.md)
 
 ---
 

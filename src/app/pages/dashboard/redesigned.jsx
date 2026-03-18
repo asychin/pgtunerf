@@ -1,9 +1,9 @@
 import React from 'react'
-import { Database } from 'lucide-react'
 import Configurator from '@common/components/configurator/redesigned'
 import LeadersSection from '@common/components/leadersSection'
 import { useLanguage } from '@common/components/languageContext'
 import bannerImg from '@common/assets/banner.png'
+import logoImg from '@common/assets/logo.png'
 
 const DashboardPage = () => {
   const { t } = useLanguage()
@@ -12,7 +12,7 @@ const DashboardPage = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-12 animate-fade-in">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <Database className="h-12 w-12 text-primary" />
+          <img src={logoImg} alt="пгтюн.рф" className="h-16 w-16 rounded-lg" />
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
             пгтюн.рф
           </h1>

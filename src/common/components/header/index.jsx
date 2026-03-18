@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Database, Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
+import logoImg from '@common/assets/logo.png'
 import { matchPath } from 'react-router'
 import { useLanguage, languageOptions } from '@common/components/languageContext'
 import {
@@ -31,10 +32,10 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 glassmorphism">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <div className="flex items-center gap-3">
-          <Database className="h-8 w-8 text-primary" />
+        <Link to="/" className="flex items-center gap-3 no-underline">
+          <img src={logoImg} alt="пгтюн.рф" className="h-10 w-10 rounded" />
           <span className="text-2xl font-black tracking-tight text-foreground">{t.title}</span>
-        </div>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
           {isActive('/') ? (
