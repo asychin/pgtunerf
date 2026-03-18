@@ -13,20 +13,28 @@ const AboutPage = () => {
         </CardHeader>
         <CardContent className="space-y-4 text-muted-foreground">
           <p>
-            <strong className="text-foreground">{t.title}</strong> {t.aboutPageText}{' '}
-            <a
-              href="https://en.wikipedia.org/wiki/No_Silver_Bullet"
-              className="text-primary hover:underline"
-            >
-              {t.aboutSilverBullet}
-            </a>{' '}
-            {t.aboutPageText2}
+            <strong className="text-foreground">{t.title}</strong> {t.aboutPageText}
           </p>
-          <h3 className="text-lg font-semibold text-foreground">{t.aboutUsefulLinks}</h3>
+
+          <h3 className="text-lg font-semibold text-foreground">{t.aboutHowTitle}</h3>
+          <ol className="list-decimal list-inside space-y-2">
+            <li>{t.aboutHowStep1}</li>
+            <li>{t.aboutHowStep2}</li>
+            <li>{t.aboutHowStep3}</li>
+          </ol>
+
+          <p className="text-sm italic">{t.aboutWarning}</p>
+
+          <h3 className="text-lg font-semibold text-foreground">{t.aboutSourceCode}</h3>
           <ul className="list-disc list-inside space-y-1">
             <li>
-              <a href="https://github.com/le0pard/pgtune" className="text-primary hover:underline">
-                {t.aboutSourceCode}
+              <a
+                href="https://github.com/asychin/pgtunerf"
+                className="text-primary hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                github.com/asychin/pgtunerf
               </a>
             </li>
           </ul>
