@@ -31,6 +31,9 @@ yarn build  # сборка для продакшена
 ### curl API
 
 ```bash
+# JSON (по умолчанию)
+curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd"
+
 # Формат postgresql.conf
 curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd&format=conf"
 
@@ -50,7 +53,15 @@ curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_me
 | `cpus` | число | — |
 | `connections` | число (мин. 20) | — |
 | `hd_type` | ssd, hdd, san | ssd |
-| `format` | conf, alter | conf |
+| `format` | json, conf, alter | json |
+
+### Контрибьют
+
+1. Форкни репозиторий
+2. Создай ветку для фичи (`git checkout -b my-new-feature`)
+3. Закоммить изменения (`git commit -am 'Add some feature'`)
+4. Запушь ветку (`git push origin my-new-feature`)
+5. Создай Pull Request
 
 ---
 

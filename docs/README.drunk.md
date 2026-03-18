@@ -30,6 +30,9 @@ yarn build  # собрать... для... как это... продакшена!
 ### curl... если руки не дрожат
 
 ```bash
+# JSON... ик... по умолчанию
+curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd"
+
 # Конфиг... ик... файлом
 curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd&format=conf"
 
@@ -49,9 +52,17 @@ curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_me
 | `cpus` | число | — |
 | `connections` | число (мин. 20... или 30... не помню) | — |
 | `hd_type` | ssd, hdd, san | ssd |
-| `format` | conf, alter | conf |
+| `format` | json, conf, alter | json |
 
 > Главное... ик... не перепутать продакшен с девом... один раз уже перепутал... третий тост был лишним... но конфиг получился отличный!
+
+### Контрибьют... ик
+
+1. Форкни репу... если найдёшь кнопку
+2. Создай ветку... как-нибудь (`git checkout -b my-new-feature`)
+3. Закоммить... что там написал... ик (`git commit -am 'Add some feature'`)
+4. Запушь... куда-то... (`git push origin my-new-feature`)
+5. Создай Pull Request... наверное
 
 ---
 
