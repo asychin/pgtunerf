@@ -1,6 +1,7 @@
 // Vercel Serverless Function: /api/config
-// Usage: curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd&format=conf"
-// format=conf (default) -> postgresql.conf format
+// Usage: curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd&format=json"
+// format=json (default) -> JSON format
+// format=conf -> postgresql.conf format
 // format=alter -> ALTER SYSTEM format
 
 const SIZE_UNIT_MAP = {
@@ -253,7 +254,58 @@ function calculate(params) {
   }
 }
 
-function generateOutput(params, config, isAlterSystem) {
+function generateJsonOutput(params, config) {
+  const configParams = {}
+
+  const entries = [
+    ['max_connections', config.maxConnections],
+    ['shared_buffers', formatValue(config.sharedBuffers)],
+    ['effective_cache_size', formatValue(config.effectiveCacheSize)],
+    ['maintenance_work_mem', formatValue(config.maintenanceWorkMem)],
+    ['checkpoint_completion_target', config.checkpointCompletionTarget],
+    ['wal_buffers', formatValue(config.walBuffers)],
+    ['default_statistics_target', config.defaultStatisticsTarget],
+    ['random_page_cost', config.randomPageCost],
+    ['effective_io_concurrency', config.effectiveIoConcurrency],
+    ['work_mem', formatValue(config.workMem)],
+    ['huge_pages', config.hugePages]
+  ]
+
+  config.checkpointSegments.forEach((s) => {
+    entries.push([s.key, s.key === 'checkpoint_segments' ? s.value : formatValue(s.value)])
+  })
+
+  config.parallelSettings.forEach((s) => {
+    entries.push([s.key, s.value])
+  })
+
+  config.walLevel.forEach((s) => {
+    entries.push([s.key, s.value])
+  })
+
+  entries
+    .filter(([, v]) => v !== null && v !== undefined)
+    .forEach(([k, v]) => {
+      configParams[k] = v
+    })
+
+  return {
+    input: {
+      db_version: params.dbVersion,
+      os_type: params.osType,
+      db_type: params.dbType,
+      total_memory: params.totalMemory,
+      total_memory_unit: params.totalMemoryUnit,
+      cpus: params.cpuNum,
+      connections: params.connectionNum,
+      hd_type: params.hdType
+    },
+    configuration: configParams,
+    warnings: config.warnings.length > 0 ? config.warnings : undefined
+  }
+}
+
+function generateTextOutput(params, config, isAlterSystem) {
   const comment = isAlterSystem ? '--' : '#'
 
   // hardware info header
@@ -330,46 +382,45 @@ export default function handler(req, res) {
   const cpuNum = q.cpus ? parseInt(q.cpus, 10) : null
   const connectionNum = q.connections ? parseInt(q.connections, 10) : null
   const hdType = (q.hd_type || 'ssd').toLowerCase()
-  const format = (q.format || 'conf').toLowerCase()
+  const format = (q.format || 'json').toLowerCase()
 
   // validation
   if (!totalMemory || totalMemory <= 0) {
-    res.status(400).send(
-      `# Ошибка: параметр total_memory обязателен
-# Использование:
-# curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd&format=conf"
-#
-# Параметры:
-#   db_version      - версия PostgreSQL (10-18, по умолчанию 18)
-#   os_type         - linux, windows, mac (по умолчанию linux)
-#   db_type         - web, oltp, dw, desktop, mixed (по умолчанию web)
-#   total_memory    - объём RAM (обязательно)
-#   total_memory_unit - MB или GB (по умолчанию GB)
-#   cpus            - количество CPU (необязательно)
-#   connections     - количество соединений (необязательно)
-#   hd_type         - ssd, hdd, san (по умолчанию ssd)
-#   format          - conf или alter (по умолчанию conf)
-`
-    )
+    res.status(400).json({
+      error: 'Параметр total_memory обязателен',
+      usage:
+        '/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd&format=json',
+      params: {
+        db_version: 'версия PostgreSQL (10-18, по умолчанию 18)',
+        os_type: 'linux, windows, mac (по умолчанию linux)',
+        db_type: 'web, oltp, dw, desktop, mixed (по умолчанию web)',
+        total_memory: 'объём RAM (обязательно)',
+        total_memory_unit: 'MB или GB (по умолчанию GB)',
+        cpus: 'количество CPU (необязательно)',
+        connections: 'количество соединений (необязательно)',
+        hd_type: 'ssd, hdd, san (по умолчанию ssd)',
+        format: 'json, conf, alter (по умолчанию json)'
+      }
+    })
     return
   }
 
   if (!VALID_DB_TYPES.includes(dbType)) {
-    res.status(400).send(`# Ошибка: неверный db_type. Допустимые: ${VALID_DB_TYPES.join(', ')}\n`)
+    res.status(400).json({ error: `Неверный db_type. Допустимые: ${VALID_DB_TYPES.join(', ')}` })
     return
   }
   if (!VALID_OS_TYPES.includes(osType)) {
-    res.status(400).send(`# Ошибка: неверный os_type. Допустимые: ${VALID_OS_TYPES.join(', ')}\n`)
+    res.status(400).json({ error: `Неверный os_type. Допустимые: ${VALID_OS_TYPES.join(', ')}` })
     return
   }
   if (!VALID_HD_TYPES.includes(hdType)) {
-    res.status(400).send(`# Ошибка: неверный hd_type. Допустимые: ${VALID_HD_TYPES.join(', ')}\n`)
+    res.status(400).json({ error: `Неверный hd_type. Допустимые: ${VALID_HD_TYPES.join(', ')}` })
     return
   }
   if (!VALID_MEMORY_UNITS.includes(totalMemoryUnit)) {
     res
       .status(400)
-      .send(`# Ошибка: неверный total_memory_unit. Допустимые: ${VALID_MEMORY_UNITS.join(', ')}\n`)
+      .json({ error: `Неверный total_memory_unit. Допустимые: ${VALID_MEMORY_UNITS.join(', ')}` })
     return
   }
 
@@ -385,8 +436,16 @@ export default function handler(req, res) {
   }
 
   const config = calculate(params)
+
+  if (format === 'json') {
+    const output = generateJsonOutput(params, config)
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
+    res.status(200).json(output)
+    return
+  }
+
   const isAlterSystem = format === 'alter'
-  const output = generateOutput(params, config, isAlterSystem)
+  const output = generateTextOutput(params, config, isAlterSystem)
 
   res.setHeader('Content-Type', 'text/plain; charset=utf-8')
   res.status(200).send(output)

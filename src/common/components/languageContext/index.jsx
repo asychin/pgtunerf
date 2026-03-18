@@ -82,7 +82,12 @@ const translations = {
       'Результат можно скопировать в формате postgresql.conf или в виде команд ALTER SYSTEM и сразу применить к вашей базе данных.',
     aboutWarning:
       'Это не универсальное решение для всех случаев. Многие параметры зависят не только от железа, но и от размера базы данных, характера запросов и количества клиентов. Полученная конфигурация — хорошая отправная точка, но для продакшена рекомендуется дополнительная настройка под вашу нагрузку.',
-    aboutSourceCode: 'Исходный код на GitHub'
+    aboutSourceCode: 'Исходный код на GitHub',
+    apiLinksTitle: 'API',
+    apiLinksDesc: 'Получите эту конфигурацию через API:',
+    apiLinkJson: 'JSON',
+    apiLinkConf: 'postgresql.conf',
+    apiLinkAlter: 'ALTER SYSTEM'
   },
   enterprise: {
     langName: 'Русский Enterprise',
@@ -165,7 +170,12 @@ const translations = {
       'Результат доступен в формате postgresql.conf либо в виде команд ALTER SYSTEM для непосредственного применения к целевой СУБД.',
     aboutWarning:
       'Данный инструмент не является универсальным решением для всех сценариев эксплуатации. Значительная часть параметров определяется не только аппаратной конфигурацией, но и объёмом базы данных, характером выполняемых запросов и количеством клиентских подключений. Полученная конфигурация является рекомендуемой базовой линией, однако для промышленной эксплуатации рекомендуется дополнительная оптимизация.',
-    aboutSourceCode: 'Репозиторий исходного кода'
+    aboutSourceCode: 'Репозиторий исходного кода',
+    apiLinksTitle: 'API',
+    apiLinksDesc: 'Получение конфигурации через программный интерфейс:',
+    apiLinkJson: 'JSON',
+    apiLinkConf: 'postgresql.conf',
+    apiLinkAlter: 'ALTER SYSTEM'
   },
   gopnik: {
     langName: 'Русский гопник',
@@ -245,7 +255,12 @@ const translations = {
       'Копируешь результат в postgresql.conf или ALTER SYSTEM и вперёд — база будет летать.',
     aboutWarning:
       'Но это не волшебная таблетка от всех бед, пацан. Много чё зависит от размера базы, сколько народу подрубается и какие запросы гоняют. Конфиг — нормальная база, но на проде надо ещё подкрутить.',
-    aboutSourceCode: 'Исходники на гитхабе'
+    aboutSourceCode: 'Исходники на гитхабе',
+    apiLinksTitle: 'API',
+    apiLinksDesc: 'Можешь дёрнуть конфиг по API:',
+    apiLinkJson: 'JSON',
+    apiLinkConf: 'postgresql.conf',
+    apiLinkAlter: 'ALTER SYSTEM'
   },
   drunk: {
     langName: 'Русский после трёх тостов',
@@ -325,7 +340,12 @@ const translations = {
       'Копируешь результат... в postgresql.conf... или ALTER SYSTEM... и перезапускаешь... ик... наливай!',
     aboutWarning:
       'Но это не волшебная палочка... ик... от всех проблем. Много чё зависит... от размера базы... сколько народу подключается... и какие запросы... Нормально настроить можно только если всё учесть... наверное.',
-    aboutSourceCode: 'Исходники... где-то на гитхабе'
+    aboutSourceCode: 'Исходники... где-то на гитхабе',
+    apiLinksTitle: 'API... ик',
+    apiLinksDesc: 'Можешь получить конфиг... по API... наверное:',
+    apiLinkJson: 'JSON',
+    apiLinkConf: 'postgresql.conf',
+    apiLinkAlter: 'ALTER SYSTEM'
   },
   babushka: {
     langName: 'Русская бабушка',
@@ -405,7 +425,12 @@ const translations = {
       'Копируешь результат в postgresql.conf или ALTER SYSTEM и перезапускаешь базу, милый. Пирожки будешь?',
     aboutWarning:
       'Но это не волшебная палочка от всех бед, родненький. Многое зависит от размера базы данных, сколько людей подключается и какие запросы делают. Это хорошее начало, внучок, но для серьёзной работы надо ещё подкрутить.',
-    aboutSourceCode: 'Исходный код на гитхабе'
+    aboutSourceCode: 'Исходный код на гитхабе',
+    apiLinksTitle: 'API',
+    apiLinksDesc: 'Внучок, можешь получить конфиг через этот API:',
+    apiLinkJson: 'JSON',
+    apiLinkConf: 'postgresql.conf',
+    apiLinkAlter: 'ALTER SYSTEM'
   }
 }
 
