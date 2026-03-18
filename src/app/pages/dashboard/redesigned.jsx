@@ -11,8 +11,8 @@ const DashboardPage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-12 animate-fade-in">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <img src={logoImg} alt="пгтюн.рф" className="h-16 w-16 rounded-lg" />
+        <div className="flex items-center justify-center gap-1.5 mb-4">
+          <img src={logoImg} alt="пгтюн.рф" className="h-24 w-24 rounded-lg" />
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
             пгтюн.рф
           </h1>
