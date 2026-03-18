@@ -212,6 +212,20 @@ const ConfigurationView = () => {
   const codeHighlightStyle = APP_THEMES_LIGHT === theme ? solarizedLight : solarizedDark
   const generatedConfigRes = generateConfig()
 
+  const buildApiUrl = (format) => {
+    const params = new URLSearchParams()
+    params.set('db_version', dbVersion)
+    params.set('os_type', osType)
+    params.set('db_type', dbType)
+    params.set('total_memory', totalMemory)
+    params.set('total_memory_unit', totalMemoryUnit)
+    if (cpuNum) params.set('cpus', cpuNum)
+    if (connectionNum) params.set('connections', connectionNum)
+    params.set('hd_type', hdType)
+    params.set('format', format)
+    return `/api/config?${params.toString()}`
+  }
+
   return (
     <Card className="glassmorphism">
       <CardHeader>
@@ -277,6 +291,38 @@ const ConfigurationView = () => {
             </>
           )}
         </Button>
+
+        {/* API links */}
+        <div className="border-t border-border/40 pt-4">
+          <h4 className="text-sm font-semibold text-foreground mb-2">{t.apiLinksTitle || 'API'}</h4>
+          <p className="text-sm text-muted-foreground mb-2">{t.apiLinksDesc}</p>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={buildApiUrl('json')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-primary hover:underline border border-border/40 rounded px-2 py-1"
+            >
+              {t.apiLinkJson || 'JSON'}
+            </a>
+            <a
+              href={buildApiUrl('conf')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-primary hover:underline border border-border/40 rounded px-2 py-1"
+            >
+              {t.apiLinkConf || 'postgresql.conf'}
+            </a>
+            <a
+              href={buildApiUrl('alter')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-primary hover:underline border border-border/40 rounded px-2 py-1"
+            >
+              {t.apiLinkAlter || 'ALTER SYSTEM'}
+            </a>
+          </div>
+        </div>
 
         <style>{renderCodeInlineCss(codeHighlightStyle)}</style>
       </CardContent>

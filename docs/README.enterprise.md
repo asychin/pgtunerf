@@ -33,6 +33,9 @@ yarn build  # сборка production-артефактов
 Программный интерфейс для интеграции с внешними системами:
 
 ```bash
+# Выгрузка в формате JSON (по умолчанию)
+curl "https://domain/api/config?db_version=18&os_type=linux&db_type=oltp&total_memory=64&total_memory_unit=GB&cpus=16&connections=500&hd_type=ssd"
+
 # Выгрузка в формате postgresql.conf
 curl "https://domain/api/config?db_version=18&os_type=linux&db_type=oltp&total_memory=64&total_memory_unit=GB&cpus=16&connections=500&hd_type=ssd&format=conf"
 
@@ -52,9 +55,17 @@ curl "https://domain/api/config?db_version=18&os_type=linux&db_type=oltp&total_m
 | `cpus` | целое число | — |
 | `connections` | целое число (минимум 20) | — |
 | `hd_type` | ssd, hdd, san | ssd |
-| `format` | conf, alter | conf |
+| `format` | json, conf, alter | json |
 
 > **Примечание для руководства:** Данный инструмент прошёл все этапы согласования и полностью соответствует требованиям информационной безопасности. Совместимость с 1С не проверялась.
+
+### Порядок внесения изменений
+
+1. Выполнить fork репозитория
+2. Создать feature-ветку (`git checkout -b my-new-feature`)
+3. Зафиксировать изменения в системе контроля версий (`git commit -am 'Add some feature'`)
+4. Опубликовать ветку в удалённый репозиторий (`git push origin my-new-feature`)
+5. Инициировать Pull Request на рассмотрение
 
 ---
 

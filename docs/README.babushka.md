@@ -30,6 +30,9 @@ yarn build  # собрать для работы, родненький
 ### Командная строка (если ты такой умный, внучок)
 
 ```bash
+# Получить настройки в JSON, внучок (это по умолчанию)
+curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd"
+
 # Получить настройки файлом, внучок
 curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_memory=2&total_memory_unit=GB&cpus=2&connections=300&hd_type=ssd&format=conf"
 
@@ -49,9 +52,17 @@ curl "https://domain/api/config?db_version=18&os_type=linux&db_type=web&total_me
 | `cpus` | сколько процессоров, родненький | — |
 | `connections` | число (не меньше 20, внучок) | — |
 | `hd_type` | ssd, hdd, san | ssd |
-| `format` | conf, alter | conf |
+| `format` | json, conf, alter | json |
 
 > Внучок, ты покушал? А шапку надел? А базу данных настроил? Вот и молодец, родненький. Пирожки на столе.
+
+### Как помочь проекту, внучок
+
+1. Сделай fork репозитория, милый (это как копию сделать)
+2. Создай веточку для своих изменений (`git checkout -b my-new-feature`)
+3. Сохрани изменения, родненький (`git commit -am 'Add some feature'`)
+4. Отправь веточку (`git push origin my-new-feature`)
+5. Создай Pull Request, внучок
 
 ---
 
