@@ -49,7 +49,8 @@ export default defineConfig({
       manifest: {
         name: 'пгтюн.рф',
         short_name: 'пгтюн.рф',
-        description: 'пгтюн.рф - Настройка PostgreSQL по-русски',
+        description:
+          'пгтюн.рф - Настройка PostgreSQL по-русски | PGTune — PostgreSQL Configuration Calculator',
         display: 'standalone',
         start_url: '/',
         theme_color: '#fdf6e3',
