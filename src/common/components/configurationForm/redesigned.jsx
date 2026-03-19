@@ -200,7 +200,6 @@ const ConfigurationForm = () => {
                         max={MAX_NUMERIC_VALUE}
                         step={1}
                         placeholder={t.memorySize}
-                        autoFocus
                         className="flex-1"
                       />
                     )}

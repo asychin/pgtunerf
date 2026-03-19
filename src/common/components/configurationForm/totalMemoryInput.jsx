@@ -41,7 +41,6 @@ const TotalMemoryInput = ({ tooltip }) => {
         errorClassName="total-memory-amount__error"
         component={FormSimpleField}
         id={inputID}
-        autoFocus={true}
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="none"
