@@ -15,13 +15,13 @@ const LeadersSection = () => {
     {
       name: 'В. Путин',
       role: 'Президент РФ',
-      quote: t.putinQuote,
+      quote: 'PostgreSQL — надёжная база данных, проверенная временем.',
       img: putinImg
     },
     {
       name: 'Д. Медведев',
       role: 'Зам. председателя Совбеза',
-      quote: t.medvedevQuote,
+      quote: 'Я перевёл все iPad-ы на PostgreSQL',
       img: medvedevImg
     },
     {
