@@ -1,6 +1,39 @@
 import React, { createContext, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 
+const russianLeaders = [
+  {
+    name: 'В. Путин',
+    role: 'Президент РФ',
+    quote: 'PostgreSQL — надёжная база данных, проверенная временем.'
+  },
+  {
+    name: 'Д. Медведев',
+    role: 'Зам. председателя Совбеза',
+    quote: 'Я перевёл все iPad-ы на PostgreSQL'
+  },
+  {
+    name: 'В. Жириновский',
+    role: 'Лидер ЛДПР',
+    quote: 'PostgreSQL — это вам не MySQL! Это СИЛА!'
+  },
+  {
+    name: 'С. Лавров',
+    role: 'Министр иностранных дел',
+    quote: 'Дебилы, используйте PostgreSQL'
+  },
+  {
+    name: 'С. Шойгу',
+    role: 'Секретарь Совбеза',
+    quote: 'Все базы данных взяты под контроль PostgreSQL'
+  },
+  {
+    name: 'Д. Песков',
+    role: 'Пресс-секретарь Президента',
+    quote: 'Кремль официально перешёл на PostgreSQL'
+  }
+]
+
 const translations = {
   russian: {
     langName: 'Русский',
@@ -85,7 +118,8 @@ const translations = {
     apiLinksDesc: 'Получите эту конфигурацию через API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   },
   enterprise: {
     langName: 'Русский Enterprise',
@@ -170,7 +204,8 @@ const translations = {
     apiLinksDesc: 'Получение конфигурации через программный интерфейс:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   },
   gopnik: {
     langName: 'Русский гопник',
@@ -253,90 +288,240 @@ const translations = {
     apiLinksDesc: 'Можешь дёрнуть конфиг по API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   },
-  drunk: {
-    langName: 'Русский после трёх тостов',
-    title: 'пгтюн.рф',
-    subtitle: 'Нуу... давай настроим этот... как его... PostgreSQL!',
-    dbVersion: 'Верш... версия какая?',
-    osType: 'На чём крутится-то?',
-    dbType: 'А база... она для чего?',
-    ram: 'Память... сколько там гигов?',
-    cpus: 'Процессоры... ик... сколько?',
-    connections: 'Подключения... ну сколько надо',
-    storage: 'Диск... какой диск... а?',
-    generate: 'Ну давай... нажми уже!',
-    copyConfig: 'Скопировать... куда-нибудь',
-    copied: 'О! Скопировалось! Наливай!',
-    result: 'Вот... смотри что вышло',
-    leadersTitle: 'За наших лидеров! Третий тост!',
-    footer: 'Сделано в России... с любовью... и не только',
+  english: {
+    langName: 'English',
+    title: 'PGTune',
+    subtitle: 'PostgreSQL Configuration Calculator',
+    dbVersion: 'PostgreSQL Version',
+    osType: 'Operating System',
+    dbType: 'Database Type',
+    ram: 'RAM (GB)',
+    cpus: 'Number of CPUs',
+    connections: 'Number of Connections',
+    storage: 'Storage Type',
+    generate: 'Generate Configuration',
+    copyConfig: 'Copy',
+    copied: 'Copied!',
+    result: 'Configuration Result',
+    leadersTitle: 'Our leaders approve',
+    footer: 'Made in Russia with love for databases',
     disclaimer:
-      'Это всё... шутка... ик. Цитаты выдуманные... никто такого не говорил... наверное...',
-    web: 'Сайт какой-то',
-    oltp: 'Транзакции... ик',
-    dataWarehouse: 'Хранилище... большое',
-    desktop: 'На столе стоит',
-    mixed: 'Всё вместе... и так сойдёт',
-    linux: 'Линукс... наверное',
-    osx: 'OS X... или как там',
-    windows: 'Виндоус... или как там',
-    nav_home: 'Домой',
-    nav_how: 'Как... как это',
-    nav_about: 'Про нас... ик',
-    hdd: 'Жёсткий... крутится',
-    ssd: 'Быстрый... не крутится',
-    san: 'Сетевой... далеко',
-    totalMemory: 'Память... сколько?',
-    totalMemoryTooltip: 'Память... сколько там... ик',
-    cpuNumLabel: 'Проц... ядра',
-    cpuNumTooltip: 'Процессоры... ик... сколько?',
-    connectionNumLabel: 'Подключения... ну',
-    connectionNumTooltip: 'Подключения... сколько надо-то',
-    dataStorage: 'Диск... какой',
-    dataStorageTooltip: 'Диск... какой диск... а?',
+      'This site is satirical/parodic in nature. The quotes shown are fictional and are not real statements.',
+    web: 'Web Application',
+    oltp: 'OLTP',
+    dataWarehouse: 'Data Warehouse',
+    desktop: 'Desktop',
+    mixed: 'Mixed',
+    linux: 'Linux',
+    osx: 'OS X',
+    windows: 'Windows',
+    nav_home: 'Home',
+    nav_how: 'How It Works',
+    nav_about: 'About',
+    hdd: 'HDD',
+    ssd: 'SSD',
+    san: 'SAN',
+    totalMemory: 'Total Memory (RAM)',
+    totalMemoryTooltip: 'How much memory PostgreSQL can use',
+    cpuNumLabel: 'Number of CPUs',
+    cpuNumTooltip: 'Number of CPUs available to PostgreSQL',
+    connectionNumLabel: 'Number of Connections',
+    connectionNumTooltip: 'Maximum number of PostgreSQL client connections',
+    dataStorage: 'Storage Type',
+    dataStorageTooltip: 'Type of data storage device',
     postgresqlConf: 'postgresql.conf',
     alterSystem: 'ALTER SYSTEM',
-    alterSystemDesc: 'ALTER SYSTEM пишет... куда-то... в postgresql.auto.conf',
-    confDesc: 'Добавь это... в postgresql.conf... и перезапусти... ик',
-    copyConfiguration: 'Скопировать... куда-нибудь',
-    parametersTitle: 'Параметры... твоего... сервера',
-    ssdStorage: 'Быстрый... не крутится',
-    sanStorage: 'Сетевой... далеко',
-    hddStorage: 'Жёсткий... крутится',
-    webApp: 'Сайт какой-то',
-    oltpApp: 'Транзакции... ик',
-    dwApp: 'Хранилище... большое',
-    desktopApp: 'На столе стоит',
-    mixedApp: 'Всё вместе... и так сойдёт',
-    memorySize: 'Сколько памяти... ик (давай уже)',
-    cpuNumPlaceholder: 'Ядра... если помнишь',
-    connectionNumPlaceholder: 'Подключения... ну сколько',
-    configCommentDbVersion: 'Версия... какая-то',
-    configCommentOsType: 'Система... ик',
-    configCommentDbType: 'Тип базы... ну',
-    configCommentTotalMemory: 'Память... ик',
-    configCommentCpuNum: 'Ядра... сколько-то',
-    configCommentConnectionNum: 'Подключения... ик',
-    configCommentDataStorage: 'Диск... какой-то',
-    tunedBy: 'Настроено... пгтюн.рф... ик',
-    aboutPageText: 'настраивает... этот... как его... PostgreSQL... под твоё железо.',
-    aboutHowTitle: 'Как... как это работает',
+    alterSystemDesc:
+      'ALTER SYSTEM writes the given parameter setting to the postgresql.auto.conf file, which is read in addition to postgresql.conf',
+    confDesc: 'Add/modify these settings in postgresql.conf and restart the database',
+    copyConfiguration: 'Copy Configuration',
+    parametersTitle: 'Your System Parameters',
+    ssdStorage: 'SSD Storage',
+    sanStorage: 'SAN (Network) Storage',
+    hddStorage: 'HDD Storage',
+    webApp: 'Web Application',
+    oltpApp: 'Online Transaction Processing',
+    dwApp: 'Data Warehouse',
+    desktopApp: 'Desktop Application',
+    mixedApp: 'Mixed Workload',
+    memorySize: 'Memory Size (required)',
+    cpuNumPlaceholder: 'Number of CPUs (optional)',
+    connectionNumPlaceholder: 'Number of Connections (optional)',
+    configCommentDbVersion: 'DB Version',
+    configCommentOsType: 'OS Type',
+    configCommentDbType: 'DB Type',
+    configCommentTotalMemory: 'Total Memory (RAM)',
+    configCommentCpuNum: 'CPUs num',
+    configCommentConnectionNum: 'Connections num',
+    configCommentDataStorage: 'Data Storage',
+    tunedBy: 'Tuned by пгтюн.рф',
+    aboutPageText:
+      'calculates the optimal PostgreSQL configuration based on your hardware specifications.',
+    aboutHowTitle: 'How It Works',
     aboutHowStep1:
-      'Вводишь... ик... параметры сервера: версию постгреса... систему... тип нагрузки... оперативку... процессоры... подключения... и диск... какой-то.',
+      'Enter your server parameters: PostgreSQL version, operating system, workload type (web, OLTP, data warehouse, desktop, or mixed), RAM size, number of CPUs, number of connections, and storage type.',
     aboutHowStep2:
-      'Сервис считает... ик... оптимальные параметры: shared_buffers... effective_cache_size... work_mem... и всё остальное... наверное.',
+      'Based on this data, the service calculates optimal values for key PostgreSQL parameters: shared_buffers, effective_cache_size, work_mem, maintenance_work_mem, WAL settings, parallel query settings, and more.',
     aboutHowStep3:
-      'Копируешь результат... в postgresql.conf... или ALTER SYSTEM... и перезапускаешь... ик... наливай!',
+      'Copy the result in postgresql.conf format or as ALTER SYSTEM commands and apply it to your database immediately.',
     aboutWarning:
-      'Но это не волшебная палочка... ик... от всех проблем. Много чё зависит... от размера базы... сколько народу подключается... и какие запросы... Нормально настроить можно только если всё учесть... наверное.',
-    aboutSourceCode: 'Исходники... где-то на гитхабе',
-    apiLinksTitle: 'API... ик',
-    apiLinksDesc: 'Можешь получить конфиг... по API... наверное:',
+      'This is not a universal solution for all cases. Many parameters depend not only on hardware, but also on database size, query patterns, and the number of clients. The generated configuration is a good starting point, but additional tuning for your specific workload is recommended for production use.',
+    aboutSourceCode: 'Source Code on GitHub',
+    apiLinksTitle: 'API',
+    apiLinksDesc: 'Get this configuration via API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: [
+      {
+        name: 'V. Putin',
+        role: 'President of Russia',
+        quote: 'PostgreSQL is a reliable database, proven by time.'
+      },
+      {
+        name: 'D. Medvedev',
+        role: 'Deputy Chairman of the Security Council',
+        quote: 'I switched all iPads to PostgreSQL'
+      },
+      {
+        name: 'V. Zhirinovsky',
+        role: 'Leader of LDPR',
+        quote: 'PostgreSQL is not MySQL! This is POWER!'
+      },
+      {
+        name: 'S. Lavrov',
+        role: 'Minister of Foreign Affairs',
+        quote: 'Morons, use PostgreSQL'
+      },
+      {
+        name: 'S. Shoigu',
+        role: 'Secretary of the Security Council',
+        quote: 'All databases are now under PostgreSQL control'
+      },
+      {
+        name: 'D. Peskov',
+        role: 'Presidential Press Secretary',
+        quote: 'The Kremlin has officially switched to PostgreSQL'
+      }
+    ]
+  },
+  braille: {
+    langName: '⠃⠗⠁⠊⠇⠇⠑',
+    title: '⠏⠛⠞⠥⠝⠑',
+    subtitle: '⠅⠁⠇⠽⠅⠥⠇⠾⠞⠕⠗ ⠅⠕⠝⠋⠊⠛⠥⠗⠁⠉⠊⠊ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇',
+    dbVersion: '⠧⠑⠗⠎⠊⠾ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇',
+    osType: '⠕⠏⠑⠗⠁⠉⠊⠕⠝⠝⠁⠾ ⠎⠊⠎⠞⠑⠍⠁',
+    dbType: '⠞⠊⠏ ⠃⠁⠵⠮ ⠙⠁⠝⠝⠮⠓',
+    ram: '⠕⠏⠑⠗⠁⠞⠊⠧⠝⠁⠾ ⠏⠁⠍⠾⠞⠽ ⠶⠛⠃⠶',
+    cpus: '⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠉⠏⠥',
+    connections: '⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠎⠕⠑⠙⠊⠝⠑⠝⠊⠯',
+    storage: '⠞⠊⠏ ⠓⠗⠁⠝⠊⠇⠊⠺⠁',
+    generate: '⠎⠛⠑⠝⠑⠗⠊⠗⠕⠧⠁⠞⠽ ⠅⠕⠝⠋⠊⠛⠥⠗⠁⠉⠊⠳',
+    copyConfig: '⠎⠅⠕⠏⠊⠗⠕⠧⠁⠞⠽',
+    copied: '⠎⠅⠕⠏⠊⠗⠕⠧⠁⠝⠕⠖',
+    result: '⠗⠑⠵⠥⠇⠽⠞⠁⠞ ⠅⠕⠝⠋⠊⠛⠥⠗⠁⠉⠊⠊',
+    leadersTitle: '⠝⠁⠱⠊ ⠇⠊⠙⠑⠗⠮ ⠕⠙⠕⠃⠗⠾⠳⠞',
+    footer: '⠎⠙⠑⠇⠁⠝⠕ ⠧ ⠗⠕⠎⠎⠊⠊ ⠎ ⠇⠳⠃⠕⠧⠽⠳ ⠅ ⠃⠁⠵⠁⠍ ⠙⠁⠝⠝⠮⠓',
+    disclaimer: '⠎⠁⠯⠞ ⠝⠕⠎⠊⠞ ⠎⠁⠞⠊⠗⠊⠉⠑⠎⠅⠊⠯ ⠓⠁⠗⠁⠅⠞⠑⠗⠲ ⠉⠊⠞⠁⠞⠮ ⠧⠮⠍⠮⠱⠇⠑⠝⠝⠮⠑⠲',
+    web: '⠧⠑⠃⠤⠏⠗⠊⠇⠕⠚⠑⠝⠊⠑',
+    oltp: '⠕⠇⠞⠏',
+    dataWarehouse: '⠓⠗⠁⠝⠊⠇⠊⠺⠑ ⠙⠁⠝⠝⠮⠓',
+    desktop: '⠙⠑⠎⠅⠞⠕⠏',
+    mixed: '⠎⠍⠑⠱⠁⠝⠝⠮⠯',
+    linux: '⠇⠊⠝⠥⠅⠎',
+    osx: '⠕⠎ ⠭',
+    windows: '⠧⠊⠝⠙⠕⠥⠎',
+    nav_home: '⠛⠇⠁⠧⠝⠁⠾',
+    nav_how: '⠅⠁⠅ ⠗⠁⠃⠕⠞⠁⠑⠞',
+    nav_about: '⠕ ⠝⠁⠎',
+    hdd: '⠓⠙⠙',
+    ssd: '⠎⠎⠙',
+    san: '⠎⠁⠝',
+    totalMemory: '⠕⠏⠑⠗⠁⠞⠊⠧⠝⠁⠾ ⠏⠁⠍⠾⠞⠽ ⠶⠗⠁⠍⠶',
+    totalMemoryTooltip: '⠎⠅⠕⠇⠽⠅⠕ ⠏⠁⠍⠾⠞⠊ ⠍⠕⠚⠑⠞ ⠊⠎⠏⠕⠇⠽⠵⠕⠧⠁⠞⠽ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇',
+    cpuNumLabel: '⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠉⠏⠥',
+    cpuNumTooltip: '⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠉⠏⠥ ⠙⠇⠾ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇',
+    connectionNumLabel: '⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠎⠕⠑⠙⠊⠝⠑⠝⠊⠯',
+    connectionNumTooltip: '⠍⠁⠅⠎⠊⠍⠁⠇⠽⠝⠕⠑ ⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠅⠇⠊⠑⠝⠞⠎⠅⠊⠓ ⠎⠕⠑⠙⠊⠝⠑⠝⠊⠯',
+    dataStorage: '⠞⠊⠏ ⠓⠗⠁⠝⠊⠇⠊⠺⠁',
+    dataStorageTooltip: '⠞⠊⠏ ⠥⠎⠞⠗⠕⠯⠎⠞⠧⠁ ⠓⠗⠁⠝⠑⠝⠊⠾ ⠙⠁⠝⠝⠮⠓',
+    postgresqlConf: '⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇⠲⠅⠕⠝⠋',
+    alterSystem: '⠁⠇⠞⠑⠗ ⠎⠊⠎⠞⠑⠍',
+    alterSystemDesc: '⠁⠇⠞⠑⠗ ⠎⠊⠎⠞⠑⠍ ⠵⠁⠏⠊⠎⠮⠧⠁⠑⠞ ⠏⠁⠗⠁⠍⠑⠞⠗⠮ ⠧ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇⠲⠁⠧⠞⠕⠲⠅⠕⠝⠋',
+    confDesc: '⠙⠕⠃⠁⠧⠽⠞⠑ ⠝⠁⠎⠞⠗⠕⠯⠅⠊ ⠧ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇⠲⠅⠕⠝⠋ ⠊ ⠏⠑⠗⠑⠵⠁⠏⠥⠎⠞⠊⠞⠑ ⠃⠁⠵⠥',
+    copyConfiguration: '⠎⠅⠕⠏⠊⠗⠕⠧⠁⠞⠽ ⠅⠕⠝⠋⠊⠛⠥⠗⠁⠉⠊⠳',
+    parametersTitle: '⠏⠁⠗⠁⠍⠑⠞⠗⠮ ⠧⠁⠱⠑⠯ ⠎⠊⠎⠞⠑⠍⠮',
+    ssdStorage: '⠎⠎⠙ ⠝⠁⠅⠕⠏⠊⠞⠑⠇⠽',
+    sanStorage: '⠎⠑⠞⠑⠧⠕⠑ ⠶⠎⠁⠝⠶ ⠓⠗⠁⠝⠊⠇⠊⠺⠑',
+    hddStorage: '⠓⠙⠙ ⠝⠁⠅⠕⠏⠊⠞⠑⠇⠽',
+    webApp: '⠧⠑⠃⠤⠏⠗⠊⠇⠕⠚⠑⠝⠊⠑',
+    oltpApp: '⠕⠝⠇⠁⠯⠝ ⠕⠃⠗⠁⠃⠕⠞⠅⠁ ⠞⠗⠁⠝⠵⠁⠅⠉⠊⠯',
+    dwApp: '⠓⠗⠁⠝⠊⠇⠊⠺⠑ ⠙⠁⠝⠝⠮⠓',
+    desktopApp: '⠙⠑⠎⠅⠞⠕⠏ ⠏⠗⠊⠇⠕⠚⠑⠝⠊⠑',
+    mixedApp: '⠎⠍⠑⠱⠁⠝⠝⠮⠯ ⠞⠊⠏',
+    memorySize: '⠗⠁⠵⠍⠑⠗ ⠏⠁⠍⠾⠞⠊ ⠶⠕⠃⠾⠵⠁⠞⠑⠇⠽⠝⠕⠶',
+    cpuNumPlaceholder: '⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠉⠏⠥ ⠶⠝⠑⠕⠃⠾⠵⠁⠞⠑⠇⠽⠝⠕⠶',
+    connectionNumPlaceholder: '⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠎⠕⠑⠙⠊⠝⠑⠝⠊⠯ ⠶⠝⠑⠕⠃⠾⠵⠁⠞⠑⠇⠽⠝⠕⠶',
+    configCommentDbVersion: '⠧⠑⠗⠎⠊⠾ ⠃⠙',
+    configCommentOsType: '⠞⠊⠏ ⠕⠎',
+    configCommentDbType: '⠞⠊⠏ ⠃⠙',
+    configCommentTotalMemory: '⠕⠏⠑⠗⠁⠞⠊⠧⠝⠁⠾ ⠏⠁⠍⠾⠞⠽ ⠶⠗⠁⠍⠶',
+    configCommentCpuNum: '⠅⠕⠇⠤⠧⠕ ⠉⠏⠥',
+    configCommentConnectionNum: '⠅⠕⠇⠤⠧⠕ ⠎⠕⠑⠙⠊⠝⠑⠝⠊⠯',
+    configCommentDataStorage: '⠓⠗⠁⠝⠊⠇⠊⠺⠑ ⠙⠁⠝⠝⠮⠓',
+    tunedBy: '⠝⠁⠎⠞⠗⠕⠑⠝⠕ ⠎ ⠏⠕⠍⠕⠺⠽⠳ ⠏⠛⠞⠳⠝⠲⠗⠋',
+    aboutPageText:
+      '⠗⠁⠎⠎⠉⠊⠞⠮⠧⠁⠑⠞ ⠕⠏⠞⠊⠍⠁⠇⠽⠝⠥⠳ ⠅⠕⠝⠋⠊⠛⠥⠗⠁⠉⠊⠳ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇ ⠝⠁ ⠕⠎⠝⠕⠧⠑ ⠓⠁⠗⠁⠅⠞⠑⠗⠊⠎⠞⠊⠅ ⠧⠁⠱⠑⠛⠕ ⠕⠃⠕⠗⠥⠙⠕⠧⠁⠝⠊⠾⠲',
+    aboutHowTitle: '⠅⠁⠅ ⠪⠞⠕ ⠗⠁⠃⠕⠞⠁⠑⠞',
+    aboutHowStep1:
+      '⠧⠧⠑⠙⠊⠞⠑ ⠏⠁⠗⠁⠍⠑⠞⠗⠮ ⠎⠑⠗⠧⠑⠗⠁⠒ ⠧⠑⠗⠎⠊⠳ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇⠂ ⠕⠏⠑⠗⠁⠉⠊⠕⠝⠝⠥⠳ ⠎⠊⠎⠞⠑⠍⠥⠂ ⠞⠊⠏ ⠝⠁⠛⠗⠥⠵⠅⠊⠂ ⠕⠃⠺⠻⠍ ⠏⠁⠍⠾⠞⠊⠂ ⠅⠕⠇⠊⠉⠑⠎⠞⠧⠕ ⠉⠏⠥ ⠊ ⠞⠊⠏ ⠓⠗⠁⠝⠊⠇⠊⠺⠁⠲',
+    aboutHowStep2:
+      '⠎⠑⠗⠧⠊⠎ ⠗⠁⠎⠎⠉⠊⠞⠮⠧⠁⠑⠞ ⠕⠏⠞⠊⠍⠁⠇⠽⠝⠮⠑ ⠵⠝⠁⠉⠑⠝⠊⠾ ⠙⠇⠾ ⠱⠁⠗⠑⠙⠤⠃⠥⠋⠋⠑⠗⠎⠂ ⠑⠋⠋⠑⠅⠞⠊⠧⠑⠤⠅⠁⠱⠑⠤⠎⠊⠵⠑⠂ ⠺⠕⠗⠅⠤⠍⠑⠍ ⠊ ⠙⠗⠥⠛⠊⠓ ⠏⠁⠗⠁⠍⠑⠞⠗⠕⠧⠲',
+    aboutHowStep3:
+      '⠎⠅⠕⠏⠊⠗⠥⠯⠞⠑ ⠗⠑⠵⠥⠇⠽⠞⠁⠞ ⠧ ⠋⠕⠗⠍⠁⠞⠑ ⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇⠲⠅⠕⠝⠋ ⠊⠇⠊ ⠁⠇⠞⠑⠗ ⠎⠊⠎⠞⠑⠍ ⠊ ⠏⠗⠊⠍⠑⠝⠊⠞⠑ ⠅ ⠃⠁⠵⠑⠲',
+    aboutWarning:
+      '⠪⠞⠕ ⠝⠑ ⠥⠝⠊⠧⠑⠗⠎⠁⠇⠽⠝⠕⠑ ⠗⠑⠱⠑⠝⠊⠑⠲ ⠍⠝⠕⠛⠊⠑ ⠏⠁⠗⠁⠍⠑⠞⠗⠮ ⠵⠁⠧⠊⠎⠾⠞ ⠕⠞ ⠗⠁⠵⠍⠑⠗⠁ ⠃⠁⠵⠮ ⠊ ⠓⠁⠗⠁⠅⠞⠑⠗⠁ ⠵⠁⠏⠗⠕⠎⠕⠧⠲',
+    aboutSourceCode: '⠊⠎⠓⠕⠙⠝⠮⠯ ⠅⠕⠙ ⠝⠁ ⠛⠊⠞⠓⠁⠃',
+    apiLinksTitle: '⠁⠏⠊',
+    apiLinksDesc: '⠏⠕⠇⠥⠉⠊⠞⠑ ⠅⠕⠝⠋⠊⠛⠥⠗⠁⠉⠊⠳ ⠉⠑⠗⠑⠵ ⠁⠏⠊⠒',
+    apiLinkJson: '⠚⠎⠕⠝',
+    apiLinkConf: '⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇⠲⠅⠕⠝⠋',
+    apiLinkAlter: '⠁⠇⠞⠑⠗ ⠎⠊⠎⠞⠑⠍',
+    leaders: [
+      {
+        name: '⠧⠲ ⠏⠥⠞⠊⠝',
+        role: '⠏⠗⠑⠵⠊⠙⠑⠝⠞ ⠗⠋',
+        quote: '⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇ ⠤ ⠝⠁⠙⠡⠚⠝⠁⠾ ⠃⠁⠵⠁ ⠙⠁⠝⠝⠮⠓⠂ ⠏⠗⠕⠧⠑⠗⠑⠝⠝⠁⠾ ⠧⠗⠑⠍⠑⠝⠑⠍⠲'
+      },
+      {
+        name: '⠙⠲ ⠍⠑⠙⠧⠑⠙⠑⠧',
+        role: '⠵⠁⠍⠲ ⠏⠗⠑⠙⠎⠑⠙⠁⠞⠑⠇⠾ ⠎⠕⠧⠃⠑⠵⠁',
+        quote: '⠾ ⠏⠑⠗⠑⠧⠡⠇ ⠧⠎⠑ ⠊⠏⠁⠙⠤⠮ ⠝⠁ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      },
+      {
+        name: '⠧⠲ ⠚⠊⠗⠊⠝⠕⠧⠎⠅⠊⠯',
+        role: '⠇⠊⠙⠑⠗ ⠇⠙⠏⠗',
+        quote: '⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇ ⠤ ⠪⠞⠕ ⠧⠁⠍ ⠝⠑ ⠍⠮⠎⠟⠇⠖ ⠪⠞⠕ ⠎⠊⠇⠁⠖'
+      },
+      {
+        name: '⠎⠲ ⠇⠁⠧⠗⠕⠧',
+        role: '⠍⠊⠝⠊⠎⠞⠗ ⠊⠝⠕⠎⠞⠗⠁⠝⠝⠮⠓ ⠙⠑⠇',
+        quote: '⠙⠑⠃⠊⠇⠮⠂ ⠊⠎⠏⠕⠇⠾⠵⠥⠯⠞⠑ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      },
+      {
+        name: '⠎⠲ ⠱⠕⠯⠛⠥',
+        role: '⠎⠑⠅⠗⠑⠞⠁⠗⠾ ⠎⠕⠧⠃⠑⠵⠁',
+        quote: '⠧⠎⠑ ⠃⠁⠵⠮ ⠙⠁⠝⠝⠮⠓ ⠧⠵⠾⠞⠮ ⠏⠕⠙ ⠅⠕⠝⠞⠗⠕⠇⠾ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      },
+      {
+        name: '⠙⠲ ⠏⠑⠎⠅⠕⠧',
+        role: '⠏⠗⠑⠎⠎⠤⠎⠑⠅⠗⠑⠞⠁⠗⠾ ⠏⠗⠑⠵⠊⠙⠑⠝⠞⠁',
+        quote: '⠅⠗⠑⠍⠇⠾ ⠕⠋⠊⠉⠊⠁⠇⠾⠝⠕ ⠏⠑⠗⠑⠱⠡⠇ ⠝⠁ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      }
+    ]
   },
   babushka: {
     langName: 'Русская бабушка',
@@ -419,7 +604,8 @@ const translations = {
     apiLinksDesc: 'Внучок, можешь получить конфиг через этот API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   }
 }
 
@@ -449,8 +635,9 @@ export const useLanguage = () => useContext(LanguageContext)
 // eslint-disable-next-line react-refresh/only-export-components
 export const languageOptions = [
   { key: 'russian', label: 'Русский' },
+  { key: 'english', label: 'English' },
   { key: 'enterprise', label: 'Русский Enterprise' },
   { key: 'gopnik', label: 'Русский гопник' },
-  { key: 'drunk', label: 'Русский после трёх тостов' },
+  { key: 'braille', label: '⠃⠗⠁⠊⠇⠇⠑' },
   { key: 'babushka', label: 'Русская бабушка' }
 ]

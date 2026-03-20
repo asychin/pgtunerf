@@ -4,49 +4,324 @@
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="keywords" content="пгтюн, pgtune, postgresql, postgres, tuning, config, configuration, настройка, конфигурация, оптимизация, postgresql.conf, postgresql tuning, postgresql optimization, postgresql performance, postgresql configurator, postgresql calculator, postgresql settings, database tuning, database optimization, database configuration, optimize postgresql, tune postgresql, best postgresql config, postgresql memory settings, shared_buffers, work_mem, effective_cache_size, max_connections, postgresql.conf generator, postgresql conf online, postgres config tool, postgres performance tuning" />
-    <meta name="description" content="пгтюн.рф — онлайн-калькулятор оптимальной конфигурации PostgreSQL. Укажите версию, ОЗУ, CPU и тип нагрузки — получите готовый postgresql.conf за секунды. Online PostgreSQL configuration calculator — generate optimal postgresql.conf in seconds." />
+
+    {% if page_title %}
+      {% assign seo_title = page_title %}
+    {% else %}
+      {% assign seo_title = 'пгтюн.рф — Онлайн-калькулятор конфигурации PostgreSQL | PGTune Calculator' %}
+    {% endif %}
+
+    {% if page_description %}
+      {% assign seo_description = page_description %}
+    {% else %}
+      {% assign seo_description = 'пгтюн.рф — бесплатный онлайн-калькулятор оптимальной конфигурации PostgreSQL. Укажите версию, ОЗУ, CPU и тип нагрузки — получите готовый postgresql.conf за секунды. Free online PostgreSQL configuration calculator — generate optimal postgresql.conf based on your server hardware in seconds. Supports PostgreSQL 12-18.' %}
+    {% endif %}
+
+    {% if page_keywords %}
+      {% assign seo_keywords = page_keywords %}
+    {% else %}
+      {% assign seo_keywords = 'пгтюн, pgtune, postgresql, postgres, tuning, config, configuration, настройка, конфигурация, оптимизация, postgresql.conf, postgresql tuning, postgresql optimization, postgresql performance, postgresql configurator, postgresql calculator, postgresql settings, database tuning, database optimization, database configuration, optimize postgresql, tune postgresql, best postgresql config, postgresql memory settings, shared_buffers, work_mem, effective_cache_size, max_connections, postgresql.conf generator, postgresql conf online, postgres config tool, postgres performance tuning, postgresql 18, postgresql 17, postgresql 16, postgresql config calculator, pgtune online, pgtune calculator, настройка postgresql онлайн, оптимизация postgresql, конфигуратор postgresql, калькулятор postgresql, postgresql.conf калькулятор, postgresql.conf генератор' %}
+    {% endif %}
+
+    {% if page_og_title %}
+      {% assign seo_og_title = page_og_title %}
+    {% else %}
+      {% assign seo_og_title = 'пгтюн.рф — Онлайн-калькулятор конфигурации PostgreSQL | PGTune' %}
+    {% endif %}
+
+    {% if page_og_description %}
+      {% assign seo_og_description = page_og_description %}
+    {% else %}
+      {% assign seo_og_description = 'Бесплатный онлайн-калькулятор оптимальной конфигурации PostgreSQL. Укажите параметры сервера — получите готовый postgresql.conf. Free PostgreSQL configuration calculator.' %}
+    {% endif %}
+
+    <title>{{ seo_title }}</title>
+    <meta name="description" content="{{ seo_description }}" />
+    <meta name="keywords" content="{{ seo_keywords }}" />
     <meta name="theme-color" content="#fdf6e3" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://пгтюн.рф{{ page_path }}" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="пгтюн.рф" />
+    <meta name="generator" content="пгтюн.рф — PostgreSQL Configuration Calculator" />
+
+    <!-- Canonical & Alternate Languages -->
+    <link rel="canonical" href="https://xn--e1afkgb3bxd.xn--p1ai{{ page_path }}" />
+    <link rel="alternate" hreflang="ru" href="https://xn--e1afkgb3bxd.xn--p1ai{{ page_path }}" />
+    <link rel="alternate" hreflang="en" href="https://xn--e1afkgb3bxd.xn--p1ai{{ page_path }}" />
+    <link rel="alternate" hreflang="x-default" href="https://xn--e1afkgb3bxd.xn--p1ai{{ page_path }}" />
+
     <link type="text/plain" rel="author" href="/humans.txt" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="пгтюн.рф — Настройка PostgreSQL по-русски" />
-    <meta property="og:description" content="Онлайн-калькулятор оптимальной конфигурации PostgreSQL. Укажите параметры сервера — получите готовый postgresql.conf" />
-    <meta property="og:url" content="https://пгтюн.рф{{ page_path }}" />
-    <meta property="og:image" content="https://пгтюн.рф/icon-512x512.png" />
+    <meta property="og:title" content="{{ seo_og_title }}" />
+    <meta property="og:description" content="{{ seo_og_description }}" />
+    <meta property="og:url" content="https://xn--e1afkgb3bxd.xn--p1ai{{ page_path }}" />
+    <meta property="og:image" content="https://xn--e1afkgb3bxd.xn--p1ai/icon-512x512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="пгтюн.рф — PostgreSQL Configuration Calculator" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:locale:alternate" content="en_US" />
-    <meta property="og:site_name" content="пгтюн.рф" />
+    <meta property="og:site_name" content="пгтюн.рф — PGTune" />
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="пгтюн.рф — Настройка PostgreSQL по-русски" />
-    <meta name="twitter:description" content="Онлайн-калькулятор оптимальной конфигурации PostgreSQL" />
-    <meta name="twitter:image" content="https://пгтюн.рф/icon-512x512.png" />
-    <!-- JSON-LD Structured Data -->
+    <meta name="twitter:title" content="{{ seo_og_title }}" />
+    <meta name="twitter:description" content="{{ seo_og_description }}" />
+    <meta name="twitter:image" content="https://xn--e1afkgb3bxd.xn--p1ai/icon-512x512.png" />
+    <meta name="twitter:image:alt" content="пгтюн.рф — PostgreSQL Configuration Calculator" />
+
+    <!-- Yandex specific -->
+    <meta name="yandex-verification" content="" />
+
+    <!-- JSON-LD: WebApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "пгтюн.рф",
-      "alternateName": "PGTune — PostgreSQL Configuration Calculator",
-      "url": "https://пгтюн.рф/",
+      "alternateName": ["PGTune", "PGTune Calculator", "PostgreSQL Configuration Calculator", "пгтюн", "pgtune.rf", "pgtune rf"],
+      "url": "https://xn--e1afkgb3bxd.xn--p1ai/",
       "description": "Онлайн-калькулятор оптимальной конфигурации PostgreSQL на основе характеристик сервера. Online PostgreSQL configuration calculator — generate optimal postgresql.conf based on your server hardware.",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Web",
       "inLanguage": ["ru", "en"],
+      "isAccessibleForFree": true,
+      "browserRequirements": "Requires JavaScript",
+      "softwareVersion": "2.0",
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "RUB"
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "PostgreSQL 12-18 configuration optimization",
+        "shared_buffers calculation",
+        "work_mem optimization",
+        "effective_cache_size tuning",
+        "WAL settings optimization",
+        "Parallel query configuration",
+        "postgresql.conf and ALTER SYSTEM output formats",
+        "REST API for programmatic access"
+      ],
+      "screenshot": "https://xn--e1afkgb3bxd.xn--p1ai/icon-512x512.png",
+      "author": {
+        "@type": "Organization",
+        "name": "пгтюн.рф",
+        "url": "https://xn--e1afkgb3bxd.xn--p1ai/"
       }
     }
     </script>
-    <title>пгтюн.рф — Настройка PostgreSQL по-русски</title>
+
+    <!-- JSON-LD: FAQPage (for rich snippets in search) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что такое пгтюн.рф (PGTune)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "пгтюн.рф — это бесплатный онлайн-калькулятор оптимальной конфигурации PostgreSQL. Вы указываете параметры сервера (версию PostgreSQL, ОЗУ, CPU, тип нагрузки), и сервис генерирует готовый postgresql.conf с оптимальными настройками shared_buffers, work_mem, effective_cache_size и другими параметрами."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is PGTune and how does it work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PGTune is a free online PostgreSQL configuration calculator. You enter your server parameters (PostgreSQL version, RAM, CPU, workload type) and the service generates an optimized postgresql.conf with optimal settings for shared_buffers, work_mem, effective_cache_size, and other parameters. It supports PostgreSQL versions 12 through 18."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как настроить shared_buffers в PostgreSQL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "shared_buffers обычно устанавливается в 25% от общего объёма ОЗУ. Для серверов с более чем 64 ГБ ОЗУ при нагрузках OLTP или Data Warehouse рекомендуется до 40%. Используйте калькулятор пгтюн.рф для автоматического расчёта оптимального значения."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to configure shared_buffers in PostgreSQL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "shared_buffers is typically set to 25% of total RAM. For servers with more than 64GB RAM under OLTP or Data Warehouse workloads, up to 40% is recommended. Use the PGTune calculator at pgtune.rf to automatically calculate the optimal value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какие версии PostgreSQL поддерживает пгтюн.рф?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "пгтюн.рф поддерживает версии PostgreSQL от 12 до 18 включительно. Калькулятор учитывает особенности каждой версии, например, параллельные запросы (доступны с PostgreSQL 10+) и поддержку effective_io_concurrency на Windows (с PostgreSQL 13+)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What PostgreSQL versions does PGTune support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PGTune supports PostgreSQL versions 12 through 18. The calculator accounts for version-specific features such as parallel queries (available from PostgreSQL 10+) and Windows effective_io_concurrency support (from PostgreSQL 13+)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как оптимизировать work_mem в PostgreSQL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "work_mem рассчитывается по формуле: (общая память - shared_buffers) / ((max_connections + parallel_workers) * 3). Значение зависит от типа нагрузки. Используйте пгтюн.рф для автоматического расчёта."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to optimize work_mem in PostgreSQL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "work_mem is calculated using the formula: (total memory - shared_buffers) / ((max_connections + parallel_workers) * 3). The value depends on the workload type. Use PGTune calculator for automatic calculation."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Как настроить PostgreSQL с помощью пгтюн.рф | How to configure PostgreSQL with PGTune",
+      "description": "Пошаговая инструкция по оптимизации конфигурации PostgreSQL с помощью онлайн-калькулятора пгтюн.рф. Step-by-step guide to optimize PostgreSQL configuration using PGTune online calculator.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Укажите параметры сервера | Enter server parameters",
+          "text": "Выберите версию PostgreSQL (12-18), операционную систему, тип нагрузки (веб, OLTP, хранилище данных, десктоп или смешанный), укажите объём ОЗУ, количество CPU, число соединений и тип хранилища (SSD/HDD/SAN). Select PostgreSQL version (12-18), OS, workload type, RAM, CPUs, connections, and storage type."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Получите оптимальную конфигурацию | Get optimized configuration",
+          "text": "Нажмите кнопку генерации — сервис рассчитает оптимальные значения shared_buffers, effective_cache_size, work_mem, maintenance_work_mem, WAL настройки и параметры параллельных запросов. Click generate — the service calculates optimal values for shared_buffers, effective_cache_size, work_mem, and more."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Примените конфигурацию | Apply configuration",
+          "text": "Скопируйте результат в формате postgresql.conf или ALTER SYSTEM и примените к вашей базе данных. Перезапустите PostgreSQL для применения изменений. Copy the result in postgresql.conf or ALTER SYSTEM format and apply to your database."
+        }
+      ],
+      "totalTime": "PT1M",
+      "tool": {
+        "@type": "HowToTool",
+        "name": "пгтюн.рф — онлайн-калькулятор конфигурации PostgreSQL"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная — PGTune Calculator",
+          "item": "https://xn--e1afkgb3bxd.xn--p1ai/"
+        }
+        {% if page_path == '/about' %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "О проекте — About",
+          "item": "https://xn--e1afkgb3bxd.xn--p1ai/about"
+        }
+        {% endif %}
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- SEO: noscript fallback content for search engines that don't render JavaScript -->
+    <noscript>
+      <div style="max-width:800px;margin:0 auto;padding:20px;font-family:sans-serif">
+        <h1>пгтюн.рф — Онлайн-калькулятор конфигурации PostgreSQL | PGTune — PostgreSQL Configuration Calculator</h1>
+
+        <p>
+          <strong>пгтюн.рф</strong> — бесплатный онлайн-инструмент для автоматической настройки PostgreSQL.
+          Укажите версию PostgreSQL, объём оперативной памяти (RAM), количество CPU, тип нагрузки и тип хранилища —
+          получите готовый <code>postgresql.conf</code> с оптимальными параметрами за секунды.
+        </p>
+
+        <p>
+          <strong>PGTune</strong> is a free online tool for automatic PostgreSQL configuration optimization.
+          Enter your PostgreSQL version, RAM size, CPU count, workload type, and storage type —
+          get an optimized <code>postgresql.conf</code> with optimal parameters in seconds.
+        </p>
+
+        <h2>Возможности | Features</h2>
+        <ul>
+          <li>Поддержка PostgreSQL версий 12, 13, 14, 15, 16, 17, 18 | Support for PostgreSQL 12-18</li>
+          <li>Расчёт shared_buffers, work_mem, effective_cache_size, maintenance_work_mem | Calculate shared_buffers, work_mem, effective_cache_size, maintenance_work_mem</li>
+          <li>Настройка WAL параметров (wal_buffers, min_wal_size, max_wal_size) | WAL parameters optimization</li>
+          <li>Настройка параллельных запросов (max_worker_processes, max_parallel_workers) | Parallel query configuration</li>
+          <li>Вывод в формате postgresql.conf и ALTER SYSTEM | Output in postgresql.conf and ALTER SYSTEM formats</li>
+          <li>REST API для программного доступа | REST API for programmatic access</li>
+          <li>Поддержка Linux, Windows, macOS | Linux, Windows, macOS support</li>
+          <li>Типы нагрузки: веб, OLTP, хранилище данных, десктоп, смешанный | Workload types: Web, OLTP, Data Warehouse, Desktop, Mixed</li>
+          <li>Типы хранилища: SSD, HDD, SAN | Storage types: SSD, HDD, SAN</li>
+        </ul>
+
+        <h2>Как использовать | How to Use</h2>
+        <ol>
+          <li>Выберите версию PostgreSQL (12-18) | Select PostgreSQL version (12-18)</li>
+          <li>Укажите операционную систему (Linux, Windows, macOS) | Choose your OS (Linux, Windows, macOS)</li>
+          <li>Выберите тип нагрузки (Web, OLTP, DW, Desktop, Mixed) | Select workload type</li>
+          <li>Введите объём RAM и количество CPU | Enter RAM size and CPU count</li>
+          <li>Получите оптимальную конфигурацию | Get optimized configuration</li>
+        </ol>
+
+        <h2>Ключевые параметры | Key Parameters</h2>
+        <ul>
+          <li><strong>shared_buffers</strong> — буфер разделяемой памяти (25-40% RAM) | shared memory buffer (25-40% RAM)</li>
+          <li><strong>effective_cache_size</strong> — оценка кэша ОС (50-75% RAM) | OS cache estimate (50-75% RAM)</li>
+          <li><strong>work_mem</strong> — память на операцию сортировки | per-operation sort memory</li>
+          <li><strong>maintenance_work_mem</strong> — память для обслуживания (VACUUM, CREATE INDEX) | maintenance operations memory</li>
+          <li><strong>wal_buffers</strong> — буфер WAL журнала | WAL log buffer</li>
+          <li><strong>max_connections</strong> — максимальное число подключений | maximum connections</li>
+        </ul>
+
+        <h2>API</h2>
+        <p>
+          Получите конфигурацию программно | Get configuration programmatically:
+          <code>/api/config?db_version=18&amp;os_type=linux&amp;db_type=web&amp;total_memory=4&amp;total_memory_unit=GB&amp;cpus=2&amp;connections=100&amp;hd_type=ssd&amp;format=json</code>
+        </p>
+
+        <h2>Часто задаваемые вопросы | FAQ</h2>
+        <h3>Что такое PGTune? | What is PGTune?</h3>
+        <p>PGTune — это калькулятор конфигурации PostgreSQL, который помогает оптимизировать настройки базы данных на основе характеристик оборудования. | PGTune is a PostgreSQL configuration calculator that helps optimize database settings based on hardware.</p>
+
+        <h3>Как настроить shared_buffers? | How to configure shared_buffers?</h3>
+        <p>shared_buffers обычно устанавливается в 25% от общего ОЗУ (до 40% для серверов с более 64 ГБ ОЗУ). | shared_buffers is typically set to 25% of total RAM (up to 40% for large servers).</p>
+
+        <h3>Как рассчитать work_mem? | How to calculate work_mem?</h3>
+        <p>work_mem = (RAM - shared_buffers) / ((max_connections + parallel_workers) * 3). | work_mem is calculated as: (RAM - shared_buffers) / ((max_connections + parallel_workers) * 3).</p>
+
+        <h3>Какие версии PostgreSQL поддерживаются? | What PostgreSQL versions are supported?</h3>
+        <p>Поддерживаются версии PostgreSQL от 12 до 18. | PostgreSQL versions 12 through 18 are supported.</p>
+
+        <p><a href="https://github.com/asychin/pgtunerf">GitHub</a></p>
+      </div>
+    </noscript>
+
     <script async="async" defer="defer" type="module" src="/src/main.jsx"></script>
   </body>
 </html>

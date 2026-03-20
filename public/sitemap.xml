@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://пгтюн.рф/</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://xn--e1afkgb3bxd.xn--p1ai/</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://xn--e1afkgb3bxd.xn--p1ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://xn--e1afkgb3bxd.xn--p1ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xn--e1afkgb3bxd.xn--p1ai/" />
   </url>
   <url>
-    <loc>https://пгтюн.рф/about</loc>
+    <loc>https://xn--e1afkgb3bxd.xn--p1ai/about</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://xn--e1afkgb3bxd.xn--p1ai/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://xn--e1afkgb3bxd.xn--p1ai/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xn--e1afkgb3bxd.xn--p1ai/about" />
   </url>
 </urlset>

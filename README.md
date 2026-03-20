@@ -1,16 +1,12 @@
 # пгтюн.рф
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/320px-Flag_of_Russia.svg.png" alt="Флаг России" width="320" />
-</p>
-
-<p align="center">
   <strong>Тюнинг конфигурации PostgreSQL под ваше железо.</strong>
 </p>
 
 ---
 
-[Русский](docs/README.ru.md) · [Enterprise](docs/README.enterprise.md) · [Гопник](docs/README.gopnik.md) · [Пьяный](docs/README.drunk.md) · [Бабушка](docs/README.babushka.md)
+[Русский](docs/README.ru.md) · [Enterprise](docs/README.enterprise.md) · [Гопник](docs/README.gopnik.md) · [⠃⠗⠁⠊⠇⠇⠑ (Braille)](docs/README.braille.md) · [Бабушка](docs/README.babushka.md)
 
 ---
 

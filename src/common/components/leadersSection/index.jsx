@@ -11,43 +11,15 @@ import peskovImg from '@common/assets/peskov.png'
 const LeadersSection = () => {
   const { t } = useLanguage()
 
+  if (!t.leaders) return null
+
   const leaders = [
-    {
-      name: 'В. Путин',
-      role: 'Президент РФ',
-      quote: 'PostgreSQL — надёжная база данных, проверенная временем.',
-      img: putinImg
-    },
-    {
-      name: 'Д. Медведев',
-      role: 'Зам. председателя Совбеза',
-      quote: 'Я перевёл все iPad-ы на PostgreSQL',
-      img: medvedevImg
-    },
-    {
-      name: 'В. Жириновский',
-      role: 'Лидер ЛДПР',
-      quote: 'PostgreSQL — это вам не MySQL! Это СИЛА!',
-      img: zhirinovskyImg
-    },
-    {
-      name: 'С. Лавров',
-      role: 'Министр иностранных дел',
-      quote: 'Дебилы, используйте PostgreSQL',
-      img: lavrovImg
-    },
-    {
-      name: 'С. Шойгу',
-      role: 'Секретарь Совбеза',
-      quote: 'Все базы данных взяты под контроль PostgreSQL',
-      img: shoiguImg
-    },
-    {
-      name: 'Д. Песков',
-      role: 'Пресс-секретарь Президента',
-      quote: 'Кремль официально перешёл на PostgreSQL',
-      img: peskovImg
-    }
+    { ...t.leaders[0], img: putinImg },
+    { ...t.leaders[1], img: medvedevImg },
+    { ...t.leaders[2], img: zhirinovskyImg },
+    { ...t.leaders[3], img: lavrovImg },
+    { ...t.leaders[4], img: shoiguImg },
+    { ...t.leaders[5], img: peskovImg }
   ]
 
   return (

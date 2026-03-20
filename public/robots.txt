@@ -1,5 +1,17 @@
+# robots.txt for пгтюн.рф (xn--e1afkgb3bxd.xn--p1ai)
+
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /assets/
 
-Sitemap: https://пгтюн.рф/sitemap.xml
+# Sitemap
+Sitemap: https://xn--e1afkgb3bxd.xn--p1ai/sitemap.xml
+
+# Yandex specific
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+Disallow: /assets/
+Host: https://xn--e1afkgb3bxd.xn--p1ai
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
