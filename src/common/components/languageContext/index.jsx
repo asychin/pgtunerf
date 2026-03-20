@@ -1,6 +1,39 @@
 import React, { createContext, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 
+const russianLeaders = [
+  {
+    name: 'В. Путин',
+    role: 'Президент РФ',
+    quote: 'PostgreSQL — надёжная база данных, проверенная временем.'
+  },
+  {
+    name: 'Д. Медведев',
+    role: 'Зам. председателя Совбеза',
+    quote: 'Я перевёл все iPad-ы на PostgreSQL'
+  },
+  {
+    name: 'В. Жириновский',
+    role: 'Лидер ЛДПР',
+    quote: 'PostgreSQL — это вам не MySQL! Это СИЛА!'
+  },
+  {
+    name: 'С. Лавров',
+    role: 'Министр иностранных дел',
+    quote: 'Дебилы, используйте PostgreSQL'
+  },
+  {
+    name: 'С. Шойгу',
+    role: 'Секретарь Совбеза',
+    quote: 'Все базы данных взяты под контроль PostgreSQL'
+  },
+  {
+    name: 'Д. Песков',
+    role: 'Пресс-секретарь Президента',
+    quote: 'Кремль официально перешёл на PostgreSQL'
+  }
+]
+
 const translations = {
   russian: {
     langName: 'Русский',
@@ -85,7 +118,8 @@ const translations = {
     apiLinksDesc: 'Получите эту конфигурацию через API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   },
   enterprise: {
     langName: 'Русский Enterprise',
@@ -170,7 +204,8 @@ const translations = {
     apiLinksDesc: 'Получение конфигурации через программный интерфейс:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   },
   gopnik: {
     langName: 'Русский гопник',
@@ -253,7 +288,8 @@ const translations = {
     apiLinksDesc: 'Можешь дёрнуть конфиг по API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   },
   english: {
     langName: 'English',
@@ -338,7 +374,39 @@ const translations = {
     apiLinksDesc: 'Get this configuration via API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: [
+      {
+        name: 'V. Putin',
+        role: 'President of Russia',
+        quote: 'PostgreSQL is a reliable database, proven by time.'
+      },
+      {
+        name: 'D. Medvedev',
+        role: 'Deputy Chairman of the Security Council',
+        quote: 'I switched all iPads to PostgreSQL'
+      },
+      {
+        name: 'V. Zhirinovsky',
+        role: 'Leader of LDPR',
+        quote: 'PostgreSQL is not MySQL! This is POWER!'
+      },
+      {
+        name: 'S. Lavrov',
+        role: 'Minister of Foreign Affairs',
+        quote: 'Morons, use PostgreSQL'
+      },
+      {
+        name: 'S. Shoigu',
+        role: 'Secretary of the Security Council',
+        quote: 'All databases are now under PostgreSQL control'
+      },
+      {
+        name: 'D. Peskov',
+        role: 'Presidential Press Secretary',
+        quote: 'The Kremlin has officially switched to PostgreSQL'
+      }
+    ]
   },
   braille: {
     langName: '⠃⠗⠁⠊⠇⠇⠑',
@@ -421,7 +489,39 @@ const translations = {
     apiLinksDesc: '⠏⠕⠇⠥⠉⠊⠞⠑ ⠅⠕⠝⠋⠊⠛⠥⠗⠁⠉⠊⠳ ⠉⠑⠗⠑⠵ ⠁⠏⠊⠒',
     apiLinkJson: '⠚⠎⠕⠝',
     apiLinkConf: '⠏⠕⠎⠞⠛⠗⠑⠎⠅⠳⠪⠇⠲⠅⠕⠝⠋',
-    apiLinkAlter: '⠁⠇⠞⠑⠗ ⠎⠊⠎⠞⠑⠍'
+    apiLinkAlter: '⠁⠇⠞⠑⠗ ⠎⠊⠎⠞⠑⠍',
+    leaders: [
+      {
+        name: '⠧⠲ ⠏⠥⠞⠊⠝',
+        role: '⠏⠗⠑⠵⠊⠙⠑⠝⠞ ⠗⠋',
+        quote: '⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇ ⠤ ⠝⠁⠙⠡⠚⠝⠁⠾ ⠃⠁⠵⠁ ⠙⠁⠝⠝⠮⠓⠂ ⠏⠗⠕⠧⠑⠗⠑⠝⠝⠁⠾ ⠧⠗⠑⠍⠑⠝⠑⠍⠲'
+      },
+      {
+        name: '⠙⠲ ⠍⠑⠙⠧⠑⠙⠑⠧',
+        role: '⠵⠁⠍⠲ ⠏⠗⠑⠙⠎⠑⠙⠁⠞⠑⠇⠾ ⠎⠕⠧⠃⠑⠵⠁',
+        quote: '⠾ ⠏⠑⠗⠑⠧⠡⠇ ⠧⠎⠑ ⠊⠏⠁⠙⠤⠮ ⠝⠁ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      },
+      {
+        name: '⠧⠲ ⠚⠊⠗⠊⠝⠕⠧⠎⠅⠊⠯',
+        role: '⠇⠊⠙⠑⠗ ⠇⠙⠏⠗',
+        quote: '⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇ ⠤ ⠪⠞⠕ ⠧⠁⠍ ⠝⠑ ⠍⠮⠎⠟⠇⠖ ⠪⠞⠕ ⠎⠊⠇⠁⠖'
+      },
+      {
+        name: '⠎⠲ ⠇⠁⠧⠗⠕⠧',
+        role: '⠍⠊⠝⠊⠎⠞⠗ ⠊⠝⠕⠎⠞⠗⠁⠝⠝⠮⠓ ⠙⠑⠇',
+        quote: '⠙⠑⠃⠊⠇⠮⠂ ⠊⠎⠏⠕⠇⠾⠵⠥⠯⠞⠑ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      },
+      {
+        name: '⠎⠲ ⠱⠕⠯⠛⠥',
+        role: '⠎⠑⠅⠗⠑⠞⠁⠗⠾ ⠎⠕⠧⠃⠑⠵⠁',
+        quote: '⠧⠎⠑ ⠃⠁⠵⠮ ⠙⠁⠝⠝⠮⠓ ⠧⠵⠾⠞⠮ ⠏⠕⠙ ⠅⠕⠝⠞⠗⠕⠇⠾ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      },
+      {
+        name: '⠙⠲ ⠏⠑⠎⠅⠕⠧',
+        role: '⠏⠗⠑⠎⠎⠤⠎⠑⠅⠗⠑⠞⠁⠗⠾ ⠏⠗⠑⠵⠊⠙⠑⠝⠞⠁',
+        quote: '⠅⠗⠑⠍⠇⠾ ⠕⠋⠊⠉⠊⠁⠇⠾⠝⠕ ⠏⠑⠗⠑⠱⠡⠇ ⠝⠁ ⠏⠕⠎⠞⠛⠗⠑⠎⠟⠇'
+      }
+    ]
   },
   babushka: {
     langName: 'Русская бабушка',
@@ -504,7 +604,8 @@ const translations = {
     apiLinksDesc: 'Внучок, можешь получить конфиг через этот API:',
     apiLinkJson: 'JSON',
     apiLinkConf: 'postgresql.conf',
-    apiLinkAlter: 'ALTER SYSTEM'
+    apiLinkAlter: 'ALTER SYSTEM',
+    leaders: russianLeaders
   }
 }
 
