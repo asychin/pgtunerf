@@ -404,7 +404,7 @@ const translations = {
     configCommentCpuNum: 'CPUs num',
     configCommentConnectionNum: 'Connections num',
     configCommentDataStorage: 'Data Storage',
-    tunedBy: 'Tuned by pgtune.rf',
+    tunedBy: 'Tuned by пгтюн.рф',
     aboutPageText:
       'calculates the optimal PostgreSQL configuration based on your hardware specifications.',
     aboutHowTitle: 'How It Works',
